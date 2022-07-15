@@ -1,0 +1,294 @@
+.already-added {
+  background-color: $cl-accent;
+  color: $cl-white-primary;
+
+  &:hover {
+    box-shadow: 0 8px 43px rgb(255 107 1 / 60%);
+  }
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 80%;
+  max-height: 940px;
+  max-width: 480px;
+  padding: 0;
+  background-color: $cl-white-primary;
+  border-radius: 5px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+
+  @include tab {
+    position: static;
+    transform: translate(0);
+    display: flex;
+    width: auto;
+    height: 552px;
+    max-width: 704px;
+    padding: 40px 36px;
+  }
+
+  @include desc {
+    height: 558px;
+    max-width: 806px;
+    padding: 40px 12px;
+  }
+
+  p,
+  h2 {
+    display: block;
+  }
+}
+
+.close-modal {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+  background-color: $cl-white-primary;
+  border: none;
+  cursor: pointer;
+  transition: 250ms ease-in;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  &::before,
+  &::after {
+    position: absolute;
+    left: 6px;
+    top: -2px;
+    content: ' ';
+    height: 19px;
+    width: 2px;
+    background-color: $cl-primary;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
+
+.modal-rendered {
+  display: flex;
+  max-height: 100%;
+
+  @include tab {
+    max-height: 552px;
+  }
+
+  @include desc {
+    max-height: 558px;
+  }
+
+  .card-div {
+    max-width: 375px;
+    height: 478px;
+    flex-shrink: 0;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+
+    &:hover::before {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    &::before {
+      content: '';
+      background-image: url('../images/player-icon.png');
+      background-size: contain;
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      opacity: 0.5;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      transition: 250ms ease-in;
+    }
+
+    .movie-poster {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      cursor: pointer;
+    }
+  }
+
+  .info-modal {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+
+    .card-title {
+      margin-bottom: 20px;
+      margin-top: 0;
+      font-size: 30px;
+      line-height: 35px;
+    }
+  }
+}
+
+.info-block {
+  border-spacing: 0;
+
+  tr {
+    display: block;
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 20px;
+    }
+  }
+  .list-keys {
+    width: 152px;
+    color: $cl-modal-text;
+  }
+}
+
+.vote-span {
+  color: $cl-white-primary;
+  padding: 1px 10px;
+  background: $cl-accent;
+  border-radius: 5px;
+}
+
+.info-about {
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.info-overview {
+  line-height: 20px;
+  margin-bottom: 20px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba($color: $cl-primary, $alpha: 0.3);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $cl-accent;
+    border-radius: 5px;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+
+  button {
+    width: 136px;
+    height: 44px;
+    text-transform: uppercase;
+    // padding: 12px 10px 14px;
+    border: 1px solid $cl-primary;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 250ms ease-in;
+
+    &:hover {
+      background: $cl-accent;
+      border-color: $cl-accent;
+      color: $cl-white-primary;
+    }
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .modal-rendered {
+    .card-div {
+      max-width: 264px;
+      max-height: 374px;
+
+      &::before {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    .info-modal {
+      margin-left: 68px;
+
+      .card-title {
+        font-size: 20px;
+        line-height: 23px;
+      }
+    }
+  }
+
+  .info-block {
+    .list-keys {
+      width: 108px;
+    }
+  }
+
+  .buttons {
+    button {
+      width: 125px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .basicLightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    display: block;
+    padding: 20px;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba($color: $cl-primary, $alpha: 0.3);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $cl-accent;
+      border-radius: 5px;
+    }
+  }
+
+  .modal-rendered {
+    width: 100%;
+    display: block;
+    padding: 48px 20px 40px;
+
+    .card-div {
+      height: 357px;
+      max-width: 240px;
+      margin: 0 auto 20px;
+    }
+
+    .info-modal {
+      margin-left: 0;
+      max-height: 475px;
+    }
+  }
+
+  .buttons {
+    gap: 20px;
+
+    button {
+      width: 100%;
+    }
+  }
+}
